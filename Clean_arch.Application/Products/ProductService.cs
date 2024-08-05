@@ -1,6 +1,7 @@
 ﻿using Clean_arch.Application.Products.Dtos;
 using Clean_arch.Domain.Products;
 using Clean_arch.Domain.Products.Repository;
+using Clean_arch.Domain.Shared;
 
 namespace Clean_arch.Application.Products
 {
@@ -15,14 +16,14 @@ namespace Clean_arch.Application.Products
 
         public void AddProduct(AddProductDto command)
         {
-            _repository.Add(new Product(command.Title, command.Price));
+            _repository.Add(new Product(command.Title, Money.FromTooman(command.Price)));
             _repository.Save();
         }
 
         public void EditProduct(EditProductDto command)
         {
             var product = _repository.GetById(command.Id);
-            product.Edit(command.Title,command.Price);
+            product.Edit(command.Title, Money.FromTooman(command.Price));
             _repository.Update(product);
             _repository.Save();
         }
@@ -34,7 +35,7 @@ namespace Clean_arch.Application.Products
             {
                 Id = id,
                 Title = product.Title,
-                Price = product.Price,
+                Price = product.Price.Value,
             };
         }
 
@@ -44,7 +45,7 @@ namespace Clean_arch.Application.Products
             {
                 Id = product.Id,
                 Title = product.Title,
-                Price = product.Price,
+                Price = product.Price.Value,
             }).ToList();
         }
     }
