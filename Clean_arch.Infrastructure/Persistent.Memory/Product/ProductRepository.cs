@@ -26,6 +26,11 @@ namespace Clean_arch.Infrastructure.Persistent.Memory.Product
             return _context.Products;
         }
 
+        public bool IsProductExist(Guid id)
+        {
+            return _context.Products.Any(p => p.Id == id);
+        }
+
         public void Remove(Domain.Products.Product product)
         {
             _context.Products.Remove(product);

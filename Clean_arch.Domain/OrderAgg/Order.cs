@@ -1,0 +1,66 @@
+﻿using Clean_arch.Domain.OrderAgg;
+using Clean_arch.Domain.OrderAgg.Services;
+using Clean_arch.Domain.Products;
+using Clean_arch.Domain.Shared;
+using System.Collections.ObjectModel;
+using System.Reflection.Metadata.Ecma335;
+using System.Runtime.InteropServices;
+
+namespace Clean_arch.Domain.Orders
+{
+    public class Order
+    {
+        public long Id { get; private set; }
+        public Guid ProductId { get; private set; }
+        public int TotalItems { get; set; }
+        public ICollection<OrderItem> Items { get; private set; }
+        public bool IsFinally { get; private set; }
+        public DateTime FinallyDate { get; private set; }
+        public int TotalPrice;
+
+        public Order(Guid productId)
+        {
+            ProductId = productId;
+        }
+
+
+        public void IncreaseProductCount(int count)
+        {
+
+        }
+
+        public void Finally()
+        {
+            IsFinally = true;
+            FinallyDate = DateTime.Now;
+        }
+
+        public void AddItem(Guid productId, int count, int price , IOrderDomainService orderService)
+        {
+            if(orderService.IsProductNotExist(productId))
+            {
+                throw new Exception("No product!");
+            }
+            if(Items.Any(p => p.ProductId == productId))
+            {
+
+            }
+            Items.Add(new OrderItem(Id, productId, count, Money.FromTooman(price)));
+            TotalItems += count;
+        }
+
+        public void RemoveItem(Guid productId)
+        {
+            var item = Items.FirstOrDefault(x => x.ProductId == productId);
+            if (item == null)
+            {
+                throw new Exception("آیتم وجود ندارد.");
+            }
+            Items.Remove(item);
+            TotalItems -= item.Count;
+        }
+
+
+
+    }
+}
