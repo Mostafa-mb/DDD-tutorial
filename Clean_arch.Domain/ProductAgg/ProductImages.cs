@@ -1,6 +1,8 @@
-﻿namespace Clean_arch.Domain.ProductAgg
+﻿using Clean_arch.Domain.Shared;
+
+namespace Clean_arch.Domain.ProductAgg
 {
-    public class ProductImages
+    public class ProductImages : BaseEntity
     {
         public ProductImages(Guid productId, string imageName)
         {

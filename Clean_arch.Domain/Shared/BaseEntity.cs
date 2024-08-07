@@ -23,7 +23,7 @@ namespace Clean_arch.Domain.Shared
         }
     }
 
-    public class BaseAggregate : BaseEntity
+    public class AggregateRoot : BaseEntity
     {
         private readonly List<BaseDomainEvent> _domainEvents = new List<BaseDomainEvent>();
 

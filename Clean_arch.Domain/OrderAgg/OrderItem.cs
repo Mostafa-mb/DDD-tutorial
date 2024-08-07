@@ -2,7 +2,7 @@
 
 namespace Clean_arch.Domain.OrderAgg
 {
-    public class OrderItem
+    public class OrderItem : BaseEntity
     {
         public OrderItem(long orderId, Guid productId, int count, Money price)
         {
