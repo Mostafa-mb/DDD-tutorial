@@ -2,6 +2,6 @@
 {
     public interface IOrderDomainService
     {
-        bool IsProductNotExist(Guid productId);
+        bool IsProductNotExist(long productId);
     }
 }

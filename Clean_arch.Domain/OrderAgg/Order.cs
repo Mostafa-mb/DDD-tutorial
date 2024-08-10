@@ -1,5 +1,6 @@
 ﻿using Clean_arch.Domain.OrderAgg;
 using Clean_arch.Domain.OrderAgg.Events;
+using Clean_arch.Domain.OrderAgg.Exceptions;
 using Clean_arch.Domain.OrderAgg.Services;
 using Clean_arch.Domain.Products;
 using Clean_arch.Domain.Shared;
@@ -13,7 +14,7 @@ namespace Clean_arch.Domain.Orders
     {
         public long Id { get; private set; }
         public long UserId { get; private set; }
-        public Guid ProductId { get; private set; }
+        public long ProductId { get; private set; }
         public int TotalItems { get; set; }
         public ICollection<OrderItem> Items { get; private set; }
         public bool IsFinally { get; private set; }
@@ -38,11 +39,11 @@ namespace Clean_arch.Domain.Orders
             AddDomainEvent(new OrderFinalized(Id, UserId));
         }
 
-        public void AddItem(Guid productId, int count, int price , IOrderDomainService orderService)
+        public void AddItem(long productId, int count, int price , IOrderDomainService orderService)
         {
             if(orderService.IsProductNotExist(productId))
             {
-                throw new Exception("No product!");
+                throw new ProductNotFoundException();
             }
             if(Items.Any(p => p.ProductId == productId))
             {
@@ -52,7 +53,7 @@ namespace Clean_arch.Domain.Orders
             TotalItems += count;
         }
 
-        public void RemoveItem(Guid productId)
+        public void RemoveItem(long productId)
         {
             var item = Items.FirstOrDefault(x => x.ProductId == productId);
             if (item == null)

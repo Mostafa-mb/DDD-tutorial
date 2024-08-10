@@ -1,5 +1,6 @@
 ﻿using Clean_arch.Domain.ProductAgg;
 using Clean_arch.Domain.Shared;
+using Clean_arch.Domain.Shared.Exceptions;
 
 namespace Clean_arch.Domain.Products
 {
@@ -43,10 +44,7 @@ namespace Clean_arch.Domain.Products
 
         private static void Guard(string title)
         {
-            if (string.IsNullOrEmpty(title))
-            {
-                throw new ArgumentNullException("title");
-            }
+            NullOrEmptyDomainDataException.CheckString(title, nameof(title));
         }
     }
 }
