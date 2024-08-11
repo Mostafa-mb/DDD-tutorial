@@ -14,7 +14,7 @@ namespace Clean_arch.Application.Orders
         }
         public void AddOrder(AddOrderDto command)
         {
-            var order = new Order(command.ProductId, command.Count, command.Price);
+            var order = new Order(command.ProductId);
             _orderRepository.Add(order);
             _orderRepository.SaveChanges();
         }
@@ -33,8 +33,6 @@ namespace Clean_arch.Application.Orders
             return new OrderDto()
             {
                 Id = order.Id,
-                Count = order.Count,
-                Price = order.Price,
                 ProductId = order.ProductId,
             };
         }
@@ -44,8 +42,6 @@ namespace Clean_arch.Application.Orders
             return _orderRepository.GetList().Select(order => new OrderDto()
             {
                 Id = order.Id,
-                Count = order.Count,
-                Price = order.Price,
                 ProductId = order.ProductId,
             }).ToList();
         }

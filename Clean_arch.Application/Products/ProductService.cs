@@ -28,7 +28,7 @@ namespace Clean_arch.Application.Products
             _repository.Save();
         }
 
-        public ProductDto GetProductById(Guid id)
+        public ProductDto GetProductById(long id)
         {
             var product = _repository.GetById(id);
             return new ProductDto()

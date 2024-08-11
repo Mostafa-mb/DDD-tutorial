@@ -16,7 +16,7 @@ namespace Clean_arch.Infrastructure.Persistent.Memory.Product
             _context.Products.Add(product);
         }
 
-        public Domain.Products.Product GetById(Guid id)
+        public Domain.Products.Product GetById(long id)
         {
             return _context.Products.FirstOrDefault(p => p.Id == id);
         }
@@ -26,7 +26,7 @@ namespace Clean_arch.Infrastructure.Persistent.Memory.Product
             return _context.Products;
         }
 
-        public bool IsProductExist(Guid id)
+        public bool IsProductExist(long id)
         {
             return _context.Products.Any(p => p.Id == id);
         }

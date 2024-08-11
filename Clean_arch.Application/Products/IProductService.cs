@@ -6,7 +6,7 @@ namespace Clean_arch.Application.Products
     {
         void AddProduct(AddProductDto command);
         void EditProduct (EditProductDto command);
-        ProductDto GetProductById(Guid id);
+        ProductDto GetProductById(long id);
         List<ProductDto> GetProducts();
     }
 }

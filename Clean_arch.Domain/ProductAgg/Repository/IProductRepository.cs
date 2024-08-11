@@ -5,11 +5,11 @@ namespace Clean_arch.Domain.Products.Repository
     public interface IProductRepository
     {
         List<Product> GetList();
-        Product GetById(Guid id);
+        Product GetById(long id);
         void Add(Product product);
         void Update(Product product);
         void Save();
         void Remove(Product product);
-        bool IsProductExist(Guid id);
+        bool IsProductExist(long id);
     }
 }

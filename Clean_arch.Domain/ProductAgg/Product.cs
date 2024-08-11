@@ -6,7 +6,7 @@ namespace Clean_arch.Domain.Products
 {
     public class Product : AggregateRoot
     {
-        public Guid Id { get; private set; }
+        public long Id { get; private set; }
         public string Title { get; private set; }
         public Money Price { get; private set; }
         public ICollection<ProductImages>  Images { get; private set; }
@@ -16,7 +16,7 @@ namespace Clean_arch.Domain.Products
             Guard(title);
             this.Title = title;
             this.Price = price;
-            Id = Guid.NewGuid();
+            Id = Id;
         }
 
 
