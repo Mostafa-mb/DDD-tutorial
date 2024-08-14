@@ -1,15 +1,16 @@
-﻿using FluentAssertions;
+﻿using Calculator.Unit.Test.ClassFixture;
+using FluentAssertions;
 using System.Dynamic;
 
 namespace Calculator.Unit.Test
 {
-    public class ComputingTests
+    public class ComputingTests : IClassFixture<ComputingClassFixture>
     {
 
         Computing Computing;
-        public ComputingTests()
+        public ComputingTests(ComputingClassFixture c)
         {
-            Computing = new();
+            Computing = c.Computing;
         }
 
         [Fact]
@@ -77,6 +78,5 @@ namespace Calculator.Unit.Test
             var result = Computing.IsPrime(5);
             result.Should().Be(true);
         }
-
     }
 }
