@@ -16,6 +16,7 @@ namespace Clean_arch.Domain.Products
             Guard(title);
             this.Title = title;
             this.Price = price;
+            Images = new List<ProductImages>();
             Id = Id;
         }
 
@@ -32,7 +33,7 @@ namespace Clean_arch.Domain.Products
             var image = Images.FirstOrDefault(p => p.Id == id);
             if(image == null)
             {
-                throw new Exception("No Image!!");
+                throw new NullOrEmptyDomainDataException("image not found!!");
             }
             Images.Remove(image);
         }

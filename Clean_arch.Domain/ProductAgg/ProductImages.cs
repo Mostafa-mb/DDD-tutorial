@@ -1,4 +1,5 @@
 ﻿using Clean_arch.Domain.Shared;
+using Clean_arch.Domain.Shared.Exceptions;
 
 namespace Clean_arch.Domain.ProductAgg
 {
@@ -6,10 +7,9 @@ namespace Clean_arch.Domain.ProductAgg
     {
         public ProductImages(long productId, string imageName)
         {
-            if(string.IsNullOrEmpty(imageName))
-            {
-                throw new Exception("Error!");
-            }
+
+            NullOrEmptyDomainDataException.CheckString(imageName, "ImageName");
+
             ProductId = productId;
             ImageName = imageName;
         }

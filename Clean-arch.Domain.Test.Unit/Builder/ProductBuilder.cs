@@ -1,4 +1,5 @@
-﻿using Clean_arch.Domain.Products;
+﻿using Clean_arch.Domain.ProductAgg;
+using Clean_arch.Domain.Products;
 using Clean_arch.Domain.Shared;
 
 namespace Clean_arch.Domain.Test.Unit.Builder
@@ -20,6 +21,8 @@ namespace Clean_arch.Domain.Test.Unit.Builder
             _money = new Money(rialPrice);
             return this;
         }
+
+
 
         public Product Build()
         {

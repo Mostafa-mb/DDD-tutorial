@@ -1,4 +1,5 @@
-﻿using System.Data.SqlTypes;
+﻿using Clean_arch.Domain.Shared.Exceptions;
+using System.Data.SqlTypes;
 
 namespace Clean_arch.Domain.Shared
 {
@@ -14,7 +15,7 @@ namespace Clean_arch.Domain.Shared
         {
             if (rialValue < 0)
             {
-                throw new InvalidDataException();
+                throw new InvalidDomainDataException();
             }
             Value = rialValue;
         }
@@ -38,12 +39,12 @@ namespace Clean_arch.Domain.Shared
 
         public static Money operator +(Money a, Money b)
         {
-            return (Money.FromTooman(a.Value) + Money.FromTooman(b.Value));
+            return new Money (a.Value + b.Value);
         }
 
         public static Money operator -(Money a, Money b)
         {
-            return (Money.FromTooman(a.Value) - Money.FromTooman(b.Value));
+            return new Money (a.Value - b.Value);
         }
     }
 }
