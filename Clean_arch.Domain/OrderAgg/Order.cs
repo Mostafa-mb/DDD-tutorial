@@ -4,6 +4,7 @@ using Clean_arch.Domain.OrderAgg.Exceptions;
 using Clean_arch.Domain.OrderAgg.Services;
 using Clean_arch.Domain.Products;
 using Clean_arch.Domain.Shared;
+using Clean_arch.Domain.Shared.Exceptions;
 using System.Collections.ObjectModel;
 using System.Reflection.Metadata.Ecma335;
 using System.Runtime.InteropServices;
@@ -24,6 +25,7 @@ namespace Clean_arch.Domain.Orders
         public Order(long userId)
         {
             UserId = userId;
+            Items = new List<OrderItem>();
         }
         
 
@@ -47,7 +49,7 @@ namespace Clean_arch.Domain.Orders
             }
             if(Items.Any(p => p.ProductId == productId))
             {
-
+                return;
             }
             Items.Add(new OrderItem(Id, productId, count, Money.FromTooman(price)));
             TotalItems += count;
@@ -58,7 +60,7 @@ namespace Clean_arch.Domain.Orders
             var item = Items.FirstOrDefault(x => x.ProductId == productId);
             if (item == null)
             {
-                throw new Exception("آیتم وجود ندارد.");
+                throw new InvalidDomainDataException("آیتم وجود ندارد.");
             }
             Items.Remove(item);
             TotalItems -= item.Count;
