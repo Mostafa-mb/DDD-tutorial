@@ -1,6 +1,6 @@
-﻿namespace Clean_arch.Application.Products.Dtos
+﻿namespace Clean_arch.Application.Products.Edit
 {
-    public class EditProductDto
+    public class EditProductCommand
     {
         public long Id { get; set; }
         public string Title { get; set; }
