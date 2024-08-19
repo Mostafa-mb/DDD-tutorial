@@ -33,7 +33,7 @@ namespace Clean_arch.Application.Orders
             return new OrderDto()
             {
                 Id = order.Id,
-                ProductId = order.ProductId,
+                UserId = order.UserId,
             };
         }
 

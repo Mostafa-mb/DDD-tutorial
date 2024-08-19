@@ -27,7 +27,6 @@ namespace Clean_arch.Domain.Orders
             UserId = userId;
             Items = new List<OrderItem>();
         }
-        
 
         public void IncreaseProductCount(int count)
         {
@@ -65,8 +64,5 @@ namespace Clean_arch.Domain.Orders
             Items.Remove(item);
             TotalItems -= item.Count;
         }
-
-
-
     }
 }
